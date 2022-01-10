@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { makeStyles,  createMuiTheme, ThemeProvider } from '@material-ui/core';
 import AppRouter from "./app-router/AppRouter"
+import AuthContextProvider from './contexts/AuthContext';
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -36,10 +37,10 @@ const theme = createMuiTheme({
 function App() {
 
   return (
-    <ThemeProvider theme={theme}>    
-
+    <ThemeProvider theme={theme}>   
+    <AuthContextProvider>
       <AppRouter />
-
+    </AuthContextProvider> 
     </ThemeProvider>
   );
 }

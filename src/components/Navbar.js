@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 import {
   AppBar,
   makeStyles,
@@ -10,65 +10,64 @@ import {
   Menu,
   useMediaQuery,
   useTheme,
-  Box
-  } from '@material-ui/core';
+  Box,
+} from "@material-ui/core";
 
-import DrawerComponent from './DrawerComponent';
-import { BsFillBrightnessHighFill, BsFillFilePlusFill } from 'react-icons/bs';
-import { RiAccountCircleFill, RiLogoutBoxFill, RiMiniProgramFill, RiOpenArmFill } from "react-icons/ri";
-import { Link } from 'react-router-dom';
-import {  ThemeProvider } from '@mui/material/styles';
-import { signOut } from 'firebase/auth';
-import { auth } from '../helpers/firebase';
-import { AuthContext } from '../contexts/AuthContext'
+import DrawerComponent from "./DrawerComponent";
+import { BsFillBrightnessHighFill, BsFillFilePlusFill } from "react-icons/bs";
+import {
+  RiAccountCircleFill,
+  RiLogoutBoxFill,
+  RiMiniProgramFill,
+  RiOpenArmFill,
+} from "react-icons/ri";
+import { Link, useNavigate } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import { signOut } from "firebase/auth";
+import { auth } from "../helpers/firebase";
+import { AuthContext } from "../contexts/AuthContext";
 
-
-
-
-
-const logOut = async () =>{
-  await signOut(auth)
-  console.log(auth);
-}
-
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   logo: {
-    fontSize: '1.9rem',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '1.1rem',
+    fontSize: "1.9rem",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "1.1rem",
     },
   },
   acount: {
-    marginLeft: 'auto',
-    color:"black",
-    '&:hover': {
-      background: 'purple',
-      color:"white",
+    marginLeft: "auto",
+    color: "black",
+    "&:hover": {
+      background: "purple",
+      color: "white",
     },
   },
   tabsContainer: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   iconLogo: {
-    color: 'white',
-    fontSize: '4rem',
+    color: "white",
+    fontSize: "4rem",
   },
   icons: {
-    fontSize: '1.5rem',
-    color: 'orange',
+    fontSize: "1.5rem",
+    color: "orange",
   },
   iconsFont: {
-    fontSize: '1rem',
-    color:"white"
+    fontSize: "1rem",
+    color: "white",
+    marginTop: "-0.8rem",
+    marginLeft: "0.5rem",
   },
-
 }));
 
 const Navbar = () => {
-
-  const { currentUser } =  useContext(auth)
-  console.log(currentUser)
+  const { currentUser } = useContext(AuthContext);
+  const Navigate = useNavigate();
+  const logOut = async () => {
+    await signOut(auth);
+    Navigate("/");
+  };
   //Hooks
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -79,7 +78,7 @@ const Navbar = () => {
 
   const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
 
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
 
   //Functions
   const handleClickTab = (e, newValue) => {
@@ -87,7 +86,7 @@ const Navbar = () => {
     setValue(newValue);
   };
 
-  const handleOpenMenu = e => {
+  const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
   };
   const handleCloseMenu = () => {
@@ -96,28 +95,21 @@ const Navbar = () => {
 
   return (
     <>
-    
-      <AppBar color="primary" >             
-
-        <Toolbar  >
-        
-          <Box 
-              style={{cursor:"pointer"}} 
-              component={Link}
-              to="/"
-             
-           
-              > 
-           
-            <RiMiniProgramFill 
-            className={classes.iconLogo}
-    
-            />
-            <Typography
-            style={{marginTop:"-0.8rem", marginLeft:"0.5rem"}}
-              variant="h6"
-              className={classes.iconsFont}>home</Typography>
-            
+      <AppBar color="primary">
+        <Toolbar>
+          <Box
+            style={{
+              cursor: "pointer",
+            }}
+            component={Link}
+            to="/"
+          >
+            <RiMiniProgramFill className={classes.iconLogo} />{" "}
+            <Typography            
+              className={classes.iconsFont}
+            >             
+              HOME
+            </Typography>
           </Box>
           {isMatch ? (
             <>
@@ -128,48 +120,90 @@ const Navbar = () => {
               <Tabs
                 onChange={handleClickTab}
                 className={classes.tabsContainer}
-                indicatorColor='secondary'
-                value={value}>
-                
-                <Tab
-                  disableRipple
+                indicatorColor="primary"
+                value={value}
+              >
+                <Tab                  
                   icon={<BsFillBrightnessHighFill className={classes.icons} />}
-                  label='FireBlog Project'
+                  label="FireBlog Project"
                   component={Link}
-                  to="/"       
-                
-
+                  to="/"
                 />
               </Tabs>
-              <ThemeProvider theme={theme}>
-              <Button
-                onClick={handleOpenMenu}
-                className={classes.acount}
-                variant="contained"
-                color="warning"  
-                startIcon={<RiOpenArmFill className={classes.icons}/>}>   
-                              
-              open menu
-              </Button>
-              </ThemeProvider>
+            
+                <Button
+                  onClick={handleOpenMenu}
+                  className={classes.acount}
+                  variant="contained"
+                  startIcon={<RiOpenArmFill className={classes.icons} />}>
+                  {currentUser ? currentUser.displayName : "Open Menu"}
+                </Button>            
             </>
           )}
         </Toolbar>
       </AppBar>
-     
-      {/* Menu */}
+      {/* Menu */}{" "}
       <Menu
-        id='Menu'
+        id="Menu"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
-        style={{ marginTop: '50px', display:"flex", flexDirection:"column"}}
-        onClose={handleCloseMenu}>
-        <Button startIcon={<RiAccountCircleFill className={classes.icons}/>} component={Link} to="/profile" onClick={handleCloseMenu}>My Account</Button>
-        <Button startIcon={<BsFillFilePlusFill className={classes.icons}/>} component={Link} to="/new" onClick={handleCloseMenu}>New</Button>
-        <Button startIcon={<RiLogoutBoxFill className={classes.icons}/>} component={Link} to="/login" onClick={()=>{handleCloseMenu(); logOut()}}>LogOut</Button>
-
+        style={{
+          marginTop: "50px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+        onClose={handleCloseMenu}
+      >
+        {" "}
+        {currentUser ? (
+          <Button
+            startIcon={<RiAccountCircleFill className={classes.icons} />}
+            component={Link}
+            to="/profile"
+            onClick={handleCloseMenu}
+          >
+            My Account
+          </Button>
+        ) : (
+          <Button
+            startIcon={<RiAccountCircleFill className={classes.icons} />}
+            component={Link}
+            to="/profile
+                      "
+            onClick={handleCloseMenu}
+          >
+            Register
+          </Button>
+        )}{" "}
+        {currentUser ? (
+          <Button
+            startIcon={<RiLogoutBoxFill className={classes.icons} />}
+            onClick={() => {
+              handleCloseMenu();
+              logOut();
+            }}
+          >
+            Logout
+          </Button>
+        ) : (
+          <Button
+            startIcon={<RiAccountCircleFill className={classes.icons} />}
+            component={Link}
+            to="/login"
+            onClick={handleCloseMenu}
+          >
+            Login
+          </Button>
+        )}{" "}
+        <Button
+          startIcon={<BsFillFilePlusFill className={classes.icons} />}
+          component={Link}
+          to="/new"
+          onClick={handleCloseMenu}
+        >
+          New Blog
+        </Button>
       </Menu>
-  
     </>
   );
 };

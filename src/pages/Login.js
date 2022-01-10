@@ -4,10 +4,12 @@ import { Form } from "./UseForm";
 import { FcGoogle } from "react-icons/fc";
 import {auth} from "../helpers/firebase"
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const Navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,6 +19,8 @@ const Login = () => {
     const signInWithGoogle = () =>{
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
+        .then((res)=> {Navigate("/"); return res})
+        .catch((err) =>{return err})
      
 
     }
@@ -41,7 +45,7 @@ const Login = () => {
                         justifyContent: "center",
                         backgroundColor: "orange",
                         flexDirection: "column",
-                        width: "30vw",
+                        width: `calc(25rem - 1vw)`,
                         height: "70vh",
                         opacity: "0.87",
                     }}
@@ -50,29 +54,24 @@ const Login = () => {
                     <TextField
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={{
-                            width: "20vw",
-                            margin: "1rem",
-                        }}
+                       
                         id="filled-basic"
                         label="E-mail"
                         variant="filled"
+                        fullWidth
                     />
                     <TextField
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        style={{
-                            width: "20vw",
-                            margin: "1rem",
-                        }}
                         id="filled-basic"
                         label="Password"
                         variant="filled"
+                        fullWidth
                     />
                     <Button
                         type="submit"
                         style={{
-                            width: "15vw",
+                            width: `calc(20rem - 1vw)`,
                             marginTop: "1rem",
                         }}
                         variant="contained"
@@ -84,7 +83,7 @@ const Login = () => {
                     <Button
                         onClick={signInWithGoogle}
                         style={{
-                            width: "20vw",
+                            width: `calc(20rem - 1vw)`,
                             marginTop: "1rem",
                         }}
                         variant="contained"
