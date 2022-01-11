@@ -35,8 +35,7 @@ const Dashboard = () => {
 
     return (
         <Box   >
-        <BlogCard  contactList = {contactList}  />
-            
+        <BlogCard  contactList = {contactList}  />            
         </Box>
     )
 }

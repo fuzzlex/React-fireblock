@@ -1,12 +1,14 @@
 import {  Box, Button, TextField, Typography } from '@material-ui/core'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { getDatabase,ref,push,set} from "firebase/database"
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../contexts/AuthContext'
 
 
 
 const NewBlog = () => {
     const Navigate = useNavigate()
+    const { currentUser } = useContext(AuthContext);
 
     const [title, setTitle] = useState()
     const [imageUrl, setImageUrl] = useState()
@@ -14,7 +16,7 @@ const NewBlog = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        addInfo({title:title, imageUrl:imageUrl, content:content})
+        addInfo({title:title, imageUrl:imageUrl, content:content, currentUser:currentUser.email})
         setTitle("")
         setImageUrl("")
         setContent("")
@@ -30,7 +32,8 @@ const NewBlog = () => {
         set(newUserRef,{
             title:info.title,
             imageUrl:info.imageUrl,
-            content:info.content
+            content:info.content,
+            currentUser:info.currentUser
         });
      
     }

@@ -12,10 +12,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const BlogCard = ({contactList}) => {
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return (
     <div>
     <Box style={{display:"flex", minHeight:"100vh"}}>
-    {contactList ?(contactList.map(item => (<Card key={item.id}  sx={{ maxWidth: 345,maxHeight: 500, mt: 14,ml:5,border:"2px solid orange" }}>
+    {contactList ?(contactList.map(item => (<Card key={item.id}  sx={{ maxWidth: 345,maxHeight: 475, mt: 14,ml:5,border:"2px solid orange" }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -32,7 +33,7 @@ const BlogCard = ({contactList}) => {
                 {item.content.lenght > 10 ? item.content.slice(0,20) : item.content.slice(0,140).concat("....") }
               </Typography>         
               <Typography sx={{mt:1,fontSize:15}} variant="h6" color="secondary">
-                {currentUser ? "User: " + currentUser.email : ""}
+                { "User: " + item.currentUser}
               </Typography>         
             </CardContent>
              <CardActions style={{display:"flex", justifyContent:"flex-end"}}>
