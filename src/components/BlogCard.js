@@ -15,30 +15,31 @@ const BlogCard = ({contactList}) => {
   return (
     <div>
     <Box style={{display:"flex", minHeight:"100vh"}}>
-    {contactList ?(contactList.map(item => (<Card key={item.id}  sx={{ maxWidth: 345, mt: 14 }}>
+    {contactList ?(contactList.map(item => (<Card key={item.id}  sx={{ maxWidth: 345,maxHeight: 500, mt: 14,ml:5,border:"2px solid orange" }}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="200"
+              height="270"
               image={item.imageUrl}
               alt="green iguana"
+              
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {item.title}
               </Typography>
-              <Typography variant="body3" color="text.secondary">
-                {item.content}
+              <Typography variant="body3" color="primary">
+                {item.content.lenght > 10 ? item.content.slice(0,20) : item.content.slice(0,140).concat("....") }
               </Typography>         
-              <Typography sx={{mt:1}} variant="h6" color="text.secondary">
-                {currentUser ? currentUser.email : ""}
+              <Typography sx={{mt:1,fontSize:15}} variant="h6" color="secondary">
+                {currentUser ? "User: " + currentUser.email : ""}
               </Typography>         
             </CardContent>
              <CardActions style={{display:"flex", justifyContent:"flex-end"}}>
                 <Button variant="outlined" startIcon={<DeleteIcon />}>
                  Delete
                   </Button>
-                <Fab  size="small" color="secondary" aria-label="add">
+                    <Fab  size="small" color="secondary" aria-label="add">
                   <AddIcon />
                 </Fab>
          
