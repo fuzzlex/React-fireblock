@@ -7,10 +7,10 @@ import { Box } from '@mui/material';
 
 export const useFetch=()=>{
     const [contactList, setContactList] = useState();
-    const [isLoading,setIsLoading]=useState(false)
-    console.log(isLoading)
+    // const [isLoading,setIsLoading]=useState(false)
+
     useEffect(()=>{
-      setIsLoading(true)
+    //   setIsLoading(true)
 
       const db = getDatabase();
       const userRef = ref(db, 'contact');
@@ -23,15 +23,15 @@ export const useFetch=()=>{
           contactArray.push({ id, ...contacts[id] });
         }
         setContactList(contactArray);
-        setIsLoading(false)
+        // setIsLoading(false)
       })
     },[]);
-    return {isLoading,contactList};
+    return {contactList};
 }
 
 
 const Dashboard = () => {
-    const { contactList , isLoading } = useFetch();
+    const { contactList  } = useFetch();
 
     return (
         <Box   >
