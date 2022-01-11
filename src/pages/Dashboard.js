@@ -2,6 +2,7 @@ import React, {  useEffect, useState } from 'react'
 
 import BlogCard from '../components/BlogCard';
 import { getDatabase, onValue, query, ref } from 'firebase/database';
+import { Box } from '@mui/material';
 
 
 export const useFetch=()=>{
@@ -33,8 +34,10 @@ const Dashboard = () => {
     const { contactList , isLoading } = useFetch();
 
     return (
-        
+        <Box   >
         <BlogCard  contactList = {contactList}  />
+            
+        </Box>
     )
 }
 

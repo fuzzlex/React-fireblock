@@ -1,10 +1,12 @@
 import {  Box, Button, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import { getDatabase,ref,push,set} from "firebase/database"
+import { useNavigate } from 'react-router-dom'
 
 
 
 const NewBlog = () => {
+    const Navigate = useNavigate()
 
     const [title, setTitle] = useState()
     const [imageUrl, setImageUrl] = useState()
@@ -16,6 +18,7 @@ const NewBlog = () => {
         setTitle("")
         setImageUrl("")
         setContent("")
+        Navigate("/")
 
 
     }
