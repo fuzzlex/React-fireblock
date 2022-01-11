@@ -7,6 +7,7 @@ import { getDatabase, onValue, query, ref } from 'firebase/database';
 export const useFetch=()=>{
     const [contactList, setContactList] = useState();
     const [isLoading,setIsLoading]=useState(false)
+    console.log(isLoading)
     useEffect(()=>{
       setIsLoading(true)
 

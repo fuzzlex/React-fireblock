@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardMedia, Typography } from '@material-ui/core'
+import { Box,  Typography } from '@material-ui/core'
 import React from 'react'
 
 
