@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 
 import BlogCard from '../components/BlogCard';
 import { getDatabase, onValue, query, ref } from 'firebase/database';
