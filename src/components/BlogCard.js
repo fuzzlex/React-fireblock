@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const BlogCard = ({contactList}) => {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   return (
     <div>
     <Box style={{display:"flex", minHeight:"100vh",maxWidth:"100vw", flexWrap:"wrap"}}>
