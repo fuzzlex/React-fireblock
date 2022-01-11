@@ -5,6 +5,7 @@ import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import NewBlog from '../pages/NewBlog'
 import Profile from '../pages/Profile'
+import Register from '../pages/Register'
 
 const AppRouter = () => {
     return (
@@ -16,9 +17,8 @@ const AppRouter = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/new" element={<NewBlog />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
         </Routes>
-
-
         </BrowserRouter>
         
             

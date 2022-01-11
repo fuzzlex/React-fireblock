@@ -1,6 +1,5 @@
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
-import { Form } from "./UseForm";
 import { FcGoogle } from "react-icons/fc";
 import {auth} from "../helpers/firebase"
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
@@ -20,14 +19,15 @@ const Login = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
         .then((res)=> {Navigate("/"); return res})
-        .catch((err) =>{return err})
-     
+        .catch((err) =>{return err})   
 
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Box
+        
+            <Box 
+                component="form"
+                onSubmit={handleSubmit}
                 sx={{
                     minHeight: "110vh",
                     justifyContent: "center",
@@ -48,6 +48,8 @@ const Login = () => {
                         width: `calc(25rem - 1vw)`,
                         height: "70vh",
                         opacity: "0.87",
+                        border:"3px solid purple",
+                        borderRadius:"1rem"
                     }}
                 >
                     <Typography variant="h4">LOGIN </Typography>{" "}
@@ -67,6 +69,9 @@ const Login = () => {
                         label="Password"
                         variant="filled"
                         fullWidth
+                        style={{                            
+                            marginTop: "1rem",
+                        }}
                     />
                     <Button
                         type="submit"
@@ -95,7 +100,7 @@ const Login = () => {
                     </Button>
                 </Box>
             </Box>
-        </Form>
+     
     );
 };
 

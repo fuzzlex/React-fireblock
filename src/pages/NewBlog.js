@@ -1,17 +1,38 @@
 import {  Box, Button, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
+import { getDatabase,ref,push,set, onValue,query, remove,child,update } from "firebase/database"
+
+
 
 const NewBlog = () => {
+
     const [title, setTitle] = useState()
     const [imageUrl, setImageUrl] = useState()
     const [content, setContent] = useState()
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+        addInfo({title:title, imageUrl:imageUrl, content:content})
         setTitle("")
         setImageUrl("")
         setContent("")
+
+        
     }
+    const addInfo=(info)=>{
+        console.log(info);
+        const db=getDatabase();
+        const userRef=ref(db,"contact")
+        const newUserRef=push(userRef)
+        set(newUserRef,{
+            title:info.title,
+            imageUrl:info.imageUrl,
+            content:info.content
+        });
+     
+    }
+
+    
     return (
         // <Box  sx={{minHeight:"100vh", backgroundColor:"orange" }}>
         // <Box sx={{width:"100vw", height:"100vh",  backgroundColor:"white",display:"flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>

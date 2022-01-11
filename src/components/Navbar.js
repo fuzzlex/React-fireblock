@@ -22,7 +22,6 @@ import {
   RiOpenArmFill,
 } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
 import { signOut } from "firebase/auth";
 import { auth } from "../helpers/firebase";
 import { AuthContext } from "../contexts/AuthContext";
@@ -168,8 +167,7 @@ const Navbar = () => {
           <Button
             startIcon={<RiAccountCircleFill className={classes.icons} />}
             component={Link}
-            to="/profile
-                      "
+            to="/register"
             onClick={handleCloseMenu}
           >
             Register
@@ -194,7 +192,7 @@ const Navbar = () => {
           >
             Login
           </Button>
-        )}{" "}
+        )}
         <Button
           startIcon={<BsFillFilePlusFill className={classes.icons} />}
           component={Link}
