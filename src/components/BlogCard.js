@@ -12,10 +12,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const BlogCard = ({contactList}) => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <div>
-    <Box style={{display:"flex", minHeight:"100vh"}}>
+    <Box style={{display:"flex", minHeight:"100vh",maxWidth:"100vw", flexWrap:"wrap"}}>
     {contactList ?(contactList.map(item => (<Card key={item.id}  sx={{ maxWidth: 345,maxHeight: 475, mt: 14,ml:5,border:"2px solid orange" }}>
           <CardActionArea>
             <CardMedia
