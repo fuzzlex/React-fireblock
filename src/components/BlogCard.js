@@ -4,7 +4,6 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Button, CardActions,  } from '@mui/material';
-import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { getDatabase, ref, remove } from 'firebase/database';
@@ -52,16 +51,15 @@ const handleUpdate = (id, title, imageUrl, content) =>{
                 {item.content.slice(0,140).concat("....") }
               </Typography>         
               <Typography sx={{mt:1,fontSize:15}} variant="h6" color="secondary">
-                { "AUTHOR: " +   item.currentUser}
+                { "Author : " +   item.currentUser}
               </Typography>         
             </CardContent>
              <CardActions style={{display:"flex", justifyContent:"flex-end"}}>
+                <Button onClick={() => handleUpdate(item.id,item.title, item.imageUrl, item.content)} variant="outlined" startIcon={<AddIcon />}>UPDATE
+                </Button>
                 <Button onClick={() => deleteInfo(item.id)} variant="outlined" startIcon={<DeleteIcon />}>
                  Delete
                   </Button>
-                    <Fab  onClick={() => handleUpdate(item.id,item.title, item.imageUrl, item.content)} size="small" color="secondary" aria-label="add">
-                  <AddIcon />
-                </Fab>
          
       </CardActions>
           </CardActionArea>
