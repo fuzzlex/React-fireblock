@@ -14,13 +14,22 @@ const NewBlog = () => {
     const [imageUrl, setImageUrl] = useState()
     const [content, setContent] = useState()
 
+
     const handleSubmit = (e) =>{
         e.preventDefault();
-        addInfo({title:title, imageUrl:imageUrl, content:content, currentUser:currentUser.email})
-        setTitle("")
-        setImageUrl("")
-        setContent("")
-        Navigate("/")
+        if(currentUser){
+            addInfo({title:title, imageUrl:imageUrl, content:content,currentUser:currentUser.email});
+            setTitle("")
+            setImageUrl("")
+            setContent("")
+            Navigate("/")}
+        else{
+            alert("Please Login the page!")
+            Navigate("/login")
+
+        } 
+   
+
 
 
     }

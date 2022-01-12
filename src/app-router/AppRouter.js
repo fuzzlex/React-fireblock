@@ -6,6 +6,7 @@ import Login from '../pages/Login'
 import NewBlog from '../pages/NewBlog'
 import Profile from '../pages/Profile'
 import Register from '../pages/Register'
+import UpdateBlog from '../pages/UpdateBlog'
 
 const AppRouter = () => {
     return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
             <Route path="/new" element={<NewBlog />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/update" element={<UpdateBlog />} />
         </Routes>
         </BrowserRouter>
         
