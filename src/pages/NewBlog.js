@@ -42,7 +42,8 @@ const NewBlog = () => {
             title:info.title,
             imageUrl:info.imageUrl,
             content:info.content,
-            currentUser:info.currentUser
+            currentUser:info.currentUser,
+            likeCount:0
         });
      
     }
@@ -73,7 +74,7 @@ const NewBlog = () => {
         alignItems:"center",
         flexDirection:"column",
         width:"50vw",
-        height:"50vh",
+        height:"70vh",
         border:"1px solid red",
         backgroundColor:"white",
         padding:"4rem"}}

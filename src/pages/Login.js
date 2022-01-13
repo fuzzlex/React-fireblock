@@ -2,7 +2,7 @@ import { Box, Button, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import {auth} from "../helpers/firebase"
-import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import {GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 
 const Login = () => {
@@ -10,8 +10,15 @@ const Login = () => {
     const [password, setPassword] = useState();
     const Navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        try {
+            await  signInWithEmailAndPassword(auth, email, password)
+            Navigate("/")
+            
+        } catch  {
+            alert("You enter invalid password")            
+        }
         setEmail("");
         setPassword("");
     };

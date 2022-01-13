@@ -65,7 +65,7 @@ const UpdateBlog = () => {
         alignItems:"center",
         flexDirection:"column",
         width:"50vw",
-        height:"50vh",
+        height:"70vh",
         border:"1px solid red",
         backgroundColor:"white",
         padding:"4rem"}}

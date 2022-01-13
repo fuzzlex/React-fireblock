@@ -193,14 +193,15 @@ const Navbar = () => {
             Login
           </Button>
         )}
-        <Button
+        {currentUser ?   <Button
           startIcon={<BsFillFilePlusFill className={classes.icons} />}
           component={Link}
           to="/new"
           onClick={handleCloseMenu}
         >
           New Blog
-        </Button>
+        </Button> : <></> }
+      
       </Menu>
     </>
   );

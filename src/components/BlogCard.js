@@ -1,78 +1,161 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Box, CardActionArea, Button, CardActions,  } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { getDatabase, ref, remove } from 'firebase/database';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import Card  from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Box, CardActionArea,  CardActions } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
+import { ButtonOfLike, ButtonOfComment} from "./LikeandComment";
+import { Card as Carder, Placeholder } from 'semantic-ui-react'
+import { getDatabase, ref, update } from "firebase/database";
 
+const BlogCard = ({ contactList, isLoading }) => {
 
-
-
-
-const BlogCard = ({contactList}) => {
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const Navigate = useNavigate();
-  const deleteInfo=(id)=>{
+
+  
+  const handleDetailSubmit = (item) =>{
+    currentUser ? 
+    Navigate("/details" , {state :  { item }}) :
+    alert("Please login  the page!") 
+
+  }
+  const updateInfo=(id, like)=>{
+
     const db = getDatabase();
-     ref(db, 'contact');
-    remove(ref(db,"contact/"+id))
-
+    update(ref(db, 'contact/' + id) , {
+          likeCount:like
+    });
+   
 }
-const handleUpdate = (id, title, imageUrl, content) =>{
-  const recipe = {id:id, title:title, imageUrl:imageUrl, content: content}
-   Navigate("/update", { state: {recipe} })
-                      
+  const handleLike = (clickId) =>{
 
-}
+    contactList?.map(e => {if((e.id) === clickId){
+      updateInfo(e.id, parseInt(e.likeCount) + 1)
+    }}) 
+
+  }
+
+
+
+
   return (
     <div>
-    <Box style={{display:"flex", minHeight:"100vh",maxWidth:"100vw", flexWrap:"wrap"}}>
-    {contactList ?(contactList.map(item => (
-     
-      
-      <Card key={item.id}  sx={{ maxWidth: 345,maxHeight: 475, mt: 12,ml:9,border:"2px solid orange" }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="270"
-              image={item.imageUrl}
-              alt="green iguana"
-              
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {item.title}
-              </Typography>
-              <Typography variant="body3" color="primary">
-                {item.content.slice(0,140).concat("....") }
-              </Typography>         
-              <Typography sx={{mt:1,fontSize:15}} variant="h6" color="secondary">
-                { "Author : " +   item.currentUser}
-              </Typography>         
-            </CardContent>
-             <CardActions style={{display:"flex", justifyContent:"flex-end"}}>
-                <Button onClick={() => handleUpdate(item.id,item.title, item.imageUrl, item.content)} variant="outlined" startIcon={<AddIcon />}>UPDATE
-                </Button>
-                <Button onClick={() => deleteInfo(item.id)} variant="outlined" startIcon={<DeleteIcon />}>
-                 Delete
-                  </Button>
-         
-      </CardActions>
-          </CardActionArea>
-      
-        </Card>))) : (console.log("bekliyoruz"))}
-      
 
-      
-    </Box>
-    
-      
+    <div>
+    {isLoading ? (
+      <Carder.Group itemsPerRow={3} style={{marginTop:"10rem"}}>
+    <Carder>
+      <Carder.Content>
+        <Placeholder>
+          <Placeholder.Image rectangular />
+        </Placeholder>
+      </Carder.Content>
+    </Carder>
+    <Carder>
+      <Carder.Content>
+        <Placeholder>
+          <Placeholder.Image rectangular />
+        </Placeholder>
+      </Carder.Content>
+    </Carder>
+    <Carder>
+      <Carder.Content>
+        <Placeholder>
+          <Placeholder.Image rectangular />
+        </Placeholder>
+      </Carder.Content>
+    </Carder>
+  </Carder.Group>) : <></> }  
+  
+
+
+
     </div>
-  )
-}
 
-export default BlogCard
+    <div>
+
+    <Box
+        style={{
+          display: "flex",
+          maxWidth: "100vw",
+          maxHeight: "110vh",
+          flexWrap: "wrap",
+          justifyContent:"center"
+        }}
+      >
+     { contactList ? contactList.map((item) => (
+              <Card
+                key={item.id}
+                sx={{
+                  maxWidth: 345,
+                  mt: 12,
+                  ml:2,
+                  border: "2px solid orange",
+                  position:"relative"
+                }}
+               
+              >
+                <CardActionArea  onClick={() => handleDetailSubmit(item)}>
+                  <CardMedia
+                    component="img"
+                    height="270"
+                    image={item.imageUrl}
+                    alt="green iguana"
+                    
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body3" color="primary">
+                      
+                      {item.content.slice(0, 120).concat("....")}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        mt: 1,
+                        fontSize: 15,
+                      }}
+                      variant="h6"
+                      color="secondary"
+                    >
+                      
+                      {"Author : " + item.currentUser}
+                    </Typography>
+                  </CardContent>
+                  <CardActions
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    
+                  </CardActions>
+                 
+                </CardActionArea>
+                <Box  style={{width:"inherit", display:"flex", justifyContent:"center"}}>
+                    <Box  onClick={() => handleLike(item.id)} >
+                        <ButtonOfLike likeCount={item.likeCount} />
+
+                    </Box>
+                  <ButtonOfComment />
+                </Box>
+              </Card>
+            ))
+          : console.log("bekliyoruz<")} 
+      </Box>
+
+
+    </div>
+  
+        
+        
+    
+    </div>
+  );
+};
+
+export default BlogCard;
