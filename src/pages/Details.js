@@ -57,6 +57,7 @@ const Details = () => {
 
   const handleSummitOnComment = () => {
     updateInfo(recipe.id);
+    setComment("")
   };
   const updateInfo = (id) => {
     const db = getDatabase();
@@ -136,25 +137,28 @@ const Details = () => {
               </Button>
             </CardActions>
           </CardActionArea>
+        
        
           <Box>
-            {(commm?.map((e,index) => (
-              <div key={index}>
-            
-                <Avatar
+            { (commm?.length > 1) ? commm?.map((e,index) => (
+         
+              <div key={index}>   
+                     
+
+              <Avatar
                   src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144709.png?token=exp=1642045147~hmac=b98282a6582bf7319d96bb71afe6fef3"
-                  style={{marginBottom:"-2.9rem"}}                
-                />
-               
+                  style={{marginBottom:"-2.9rem", width: "2rem", height:"2rem"}}                
+                />             
                 
                 <Header  as="h3" attached="top">
                   {e.commentSender}
                 </Header>
                 <Segment attached>
                   {e.comment}
-                </Segment>
+                </Segment>           
+                
               </div>
-            )))  } 
+            )) : <h1>There is no comment here</h1> } 
 
             <Comment.Group>
               <Comment>

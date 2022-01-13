@@ -44,7 +44,7 @@ const NewBlog = () => {
             content:info.content,
             currentUser:info.currentUser,
             likeCount:0,
-            comm : {a:""}
+            comm : {initial : {comment:"Would you like to comment?"}}
         });
      
     }
