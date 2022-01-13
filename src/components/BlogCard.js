@@ -137,7 +137,7 @@ const BlogCard = ({ contactList, isLoading }) => {
                   </CardActions>
                  
                 </CardActionArea>
-                <Box  style={{width:"inherit", display:"flex", justifyContent:"center"}}>
+                <Box  style={{width:"inherit", display:"flex", justifyContent:"center",marginBottom:"2rem"}}>
                     <Box  onClick={() => handleLike(item.id)} >
                         <ButtonOfLike likeCount={item.likeCount} />
 
