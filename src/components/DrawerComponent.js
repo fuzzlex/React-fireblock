@@ -52,7 +52,12 @@ const DrawerComponent = () => {
 
           <ListItem component={Link} to="/login" divider button onClick={() => setOpenDrawer(false)}>
             <ListItemIcon>
-              <ListItemText>LogOut</ListItemText>
+              <ListItemText>LogIn</ListItemText>
+            </ListItemIcon>
+          </ListItem>
+          <ListItem component={Link} to="/register" divider button onClick={() => setOpenDrawer(false)}>
+            <ListItemIcon>
+              <ListItemText>Register</ListItemText>
             </ListItemIcon>
           </ListItem>
 
