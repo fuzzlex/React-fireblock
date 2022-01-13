@@ -32,9 +32,10 @@ const BlogCard = ({ contactList, isLoading }) => {
 }
   const handleLike = (clickId) =>{
 
-    contactList?.map(e => {if((e.id) === clickId){
-      updateInfo(e.id, parseInt(e.likeCount) + 1)
-    }}) 
+     contactList?.map((e) => ((e.id) === clickId) && 
+      updateInfo(e.id, parseInt(e.likeCount) + 1)  
+       
+    ) 
 
   }
 
