@@ -43,7 +43,8 @@ const NewBlog = () => {
             imageUrl:info.imageUrl,
             content:info.content,
             currentUser:info.currentUser,
-            likeCount:0
+            likeCount:0,
+            comm : {a:""}
         });
      
     }

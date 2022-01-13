@@ -41,7 +41,7 @@ const Dashboard = () => {
     return (
         <Box   >
         <BlogCard  contactList = {contactList} isLoading={isLoading}  />
-        <Box onClick={() => currentUser ? Navigate("/new") : alert("Please Login the page!!")}  sx={{position:"absolute",right:"2rem"}}  >
+        <Box onClick={() => currentUser ? Navigate("/new") : alert("Please Login the page!!")}  sx={{position:"absolute",right:"2rem", top:"20rem"}}  >
 
         <Fab color="secondary" aria-label="add">
         <AddIcon />

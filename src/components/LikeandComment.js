@@ -5,7 +5,7 @@ export const ButtonOfLike = ({likeCount}) => (
 
     <Button as='div' labelPosition='right'>
       <Button color='red'>
-        <Icon name='heart' color="white" />
+        <Icon name='heart'  />
         Like
       </Button>
       <Label as='a' basic color='red' pointing='left'>
@@ -15,7 +15,8 @@ export const ButtonOfLike = ({likeCount}) => (
 
       )
 
- export const ButtonOfComment = () => (
+ export const ButtonOfComment = ({item}) => (
+
 
 
 
@@ -25,7 +26,7 @@ export const ButtonOfLike = ({likeCount}) => (
         Comment
       </Button>
       <Label as='a' basic color='purple' pointing='left'>
-        0
+        {Object.keys(item.comm).length - 1}
       </Label>
     </Button>
   

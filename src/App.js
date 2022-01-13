@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {  createMuiTheme, ThemeProvider } from '@material-ui/core';
+import {  createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import AppRouter from "./app-router/AppRouter"
 import AuthContextProvider from './contexts/AuthContext';
 const theme = createMuiTheme({

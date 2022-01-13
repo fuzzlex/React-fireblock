@@ -142,7 +142,7 @@ const BlogCard = ({ contactList, isLoading }) => {
                         <ButtonOfLike likeCount={item.likeCount} />
 
                     </Box>
-                  <ButtonOfComment />
+                  <ButtonOfComment item = {item} />
                 </Box>
               </Card>
             ))
