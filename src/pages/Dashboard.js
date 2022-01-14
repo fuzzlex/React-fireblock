@@ -39,7 +39,7 @@ const Dashboard = () => {
     const {currentUser} = useContext(AuthContext)
 
     return (
-        <Box   >
+        <Box  >
         <BlogCard  contactList = {contactList} isLoading={isLoading}  />
         <Box onClick={() => currentUser ? Navigate("/new") : alert("Please Login the page!!")}  sx={{position:"absolute",right:"2rem", top:"20rem"}}  >
 

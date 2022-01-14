@@ -84,7 +84,8 @@ const BlogCard = ({ contactList, isLoading }) => {
           maxWidth: "100vw",
           maxHeight: "110vh",
           flexWrap: "wrap",
-          justifyContent:"center"
+          justifyContent:"center",
+
         }}
       >
      { contactList ? contactList.map((item) => (
