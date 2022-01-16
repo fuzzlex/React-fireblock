@@ -65,7 +65,7 @@ const Navbar = () => {
   const Navigate = useNavigate();
   const logOut = async () => {
     await signOut(auth);
-    Navigate("/");
+    Navigate("/login");
   };
   //Hooks
   const [value, setValue] = useState(0);
