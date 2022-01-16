@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, CardActionArea, Button, CardActions, Avatar } from "@mui/material";
+import { Box, CardActionArea, Button, CardActions } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   getDatabase,
@@ -14,6 +14,7 @@ import {
 } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import { FaUser } from "react-icons/fa";
 import {
   Button as Butt,
   Comment,
@@ -27,7 +28,6 @@ import { useFetch } from "./Dashboard";
 const Details = () => {
   const [comment, setComment] = useState();
   const { currentUser } = useContext(AuthContext);
-
   const location = useLocation();
   const recipe = location.state.item;
   const Navigate = useNavigate();
@@ -145,18 +145,18 @@ const Details = () => {
               <div key={index}>   
                      
 
-              <Avatar
-                  src="https://cdn-icons.flaticon.com/png/128/1144/premium/1144709.png?token=exp=1642045147~hmac=b98282a6582bf7319d96bb71afe6fef3"
-                  style={{marginBottom:"-2.9rem", width: "2rem", height:"2rem"}}                
+              <FaUser
+                 
+                  style={{marginBottom:"-4.5rem", height: "3.5rem"}}    
+                  color="blue"            
                 />             
                 
-                <Header  as="h3" attached="top">
+                <Header  as="h4"  style={{color:"blue",marginLeft:"1.4rem"}}>
                   {e.commentSender}
                 </Header>
-                <Segment attached>
+                <Segment as="h4"   attached style={{color:"purple"}}>
                   {e.comment}
-                </Segment>           
-                
+                </Segment>                
               </div>
             )) : <h1>There is no comment here</h1> } 
 

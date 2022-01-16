@@ -9,6 +9,9 @@ import { AuthContext } from "../contexts/AuthContext";
 import { ButtonOfLike, ButtonOfComment} from "./LikeandComment";
 import { Card as Carder, Placeholder } from 'semantic-ui-react'
 import { getDatabase, ref, update } from "firebase/database";
+import { Fab } from "@material-ui/core";
+import AddIcon from '@mui/icons-material/Add';
+
 
 const BlogCard = ({ contactList, isLoading }) => {
 
@@ -81,10 +84,9 @@ const BlogCard = ({ contactList, isLoading }) => {
     <Box
         style={{
           display: "flex",
-          maxWidth: "100vw",
-          maxHeight: "110vh",
           flexWrap: "wrap",
           justifyContent:"center",
+          backgroundColor:"#FFF1BD"
 
         }}
       >
@@ -92,10 +94,10 @@ const BlogCard = ({ contactList, isLoading }) => {
               <Card
                 key={item.id}
                 sx={{
-                  maxWidth: 345,
+                  maxWidth: 415,
                   mt: 12,
-                  ml:2,
-                  border: "2px solid orange",
+                  ml:4,
+                  border: "4px solid red",
                   position:"relative"
                 }}
                
@@ -148,6 +150,15 @@ const BlogCard = ({ contactList, isLoading }) => {
               </Card>
             ))
           : console.log("bekliyoruz<")} 
+          <Box onClick={() => currentUser ? Navigate("/new") : alert("Please Login the page!!")}  sx={{position:"fixed",right:"0rem", top:"39rem",display:"flex", flexDirection:"column"}}  >
+
+            <Fab color="secondary" aria-label="add">
+                <AddIcon /> 
+             </Fab>
+             <Typography variant="body1" color="red">New Blog</Typography>
+            
+
+</Box>
       </Box>
 
 

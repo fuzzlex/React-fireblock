@@ -1,11 +1,9 @@
-import React, {  useContext, useEffect, useState } from 'react'
+import React, {   useEffect, useState } from 'react'
 
 import BlogCard from '../components/BlogCard';
 import { getDatabase, onValue, query, ref } from 'firebase/database';
-import { Box, Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
+import { Box } from '@mui/material';
+
 
 
 export const useFetch=()=>{
@@ -35,19 +33,11 @@ export const useFetch=()=>{
 
 const Dashboard = () => {
     const { contactList,isLoading  } = useFetch();
-    const Navigate = useNavigate();
-    const {currentUser} = useContext(AuthContext)
 
     return (
         <Box  >
         <BlogCard  contactList = {contactList} isLoading={isLoading}  />
-        <Box onClick={() => currentUser ? Navigate("/new") : alert("Please Login the page!!")}  sx={{position:"absolute",right:"2rem", top:"20rem"}}  >
 
-        <Fab color="secondary" aria-label="add">
-        <AddIcon />
-          </Fab>
-
-        </Box>
             
         </Box>
     )
