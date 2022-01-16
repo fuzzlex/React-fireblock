@@ -22,7 +22,7 @@ const BlogCard = ({ contactList, isLoading }) => {
   const handleDetailSubmit = (item) =>{
     currentUser ? 
     Navigate("/details" , {state :  { item }}) :
-    alert("Please login  the page!") 
+    alert("Please login  the page!") || Navigate("/login")
 
   }
   const updateInfo=(id, like)=>{
