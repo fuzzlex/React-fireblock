@@ -24,7 +24,7 @@ const Login = () => {
     };
     const signInWithGoogle = async () =>{
         const provider = new GoogleAuthProvider();
-        await signInWithPopup(auth, provider)
+         signInWithPopup(auth, provider)
         .then((res)=> {Navigate("/"); return res})
         .catch((err) =>{return err})   
 

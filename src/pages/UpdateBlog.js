@@ -27,8 +27,7 @@ const UpdateBlog = () => {
            imageUrl:imageUrl,
            currentUser:currentUser.email
 
-       });
-      
+       });      
    }
   
 
